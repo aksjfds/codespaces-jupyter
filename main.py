@@ -94,7 +94,25 @@ def main():
             print(name)
 
 
+# web 
 
-while True:
-    main()
-    time.sleep(3600)
+import threading
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    return "服务器运行中..."
+
+def loop_task():
+    while True:
+        main()
+        time.sleep(3600)
+
+if __name__ == '__main__':
+    # 启动后台循环任务
+    threading.Thread(target=loop_task, daemon=True).start()
+    
+    # 启动 Web 服务器（主线程）
+    app.run(host='0.0.0.0', port=3000)
