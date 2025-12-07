@@ -72,6 +72,7 @@ def supertrend(df, period=10, atr_multiplier=3):
 
 # 主要逻辑
 def main():
+    print(1)
     for name in names:
         candles_15m = get_candles(name, bar='15m')
         supertrend_15m = supertrend(candles_15m)
