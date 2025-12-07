@@ -72,16 +72,8 @@ def supertrend(df, period=10, atr_multiplier=3):
 
 # 主要逻辑
 def main():
-    print(1)
+    print(names)
     for name in names:
-        candles_15m = get_candles(name, bar='15m')
-        supertrend_15m = supertrend(candles_15m)
-        supertrend_15m = supertrend_15m["in_uptrend"]    
-        current_trend_15m = supertrend_15m.iloc[-1]
-
-        # 不为下跌趋势就跳过
-        if current_trend_15m != False:
-            continue
 
         candles_1H = get_candles(name, bar='1H')
         supertrend_1H = supertrend(candles_1H)
