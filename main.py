@@ -71,10 +71,10 @@ def supertrend(df, period=10, atr_multiplier=3):
     return df
 
 # 主要逻辑
+target_name = []
 def main():
-    print(names)
+    target_name.clear()
     for name in names:
-
         candles_1H = get_candles(name, bar='1H')
         supertrend_1H = supertrend(candles_1H)
         supertrend_1H = supertrend_1H["in_uptrend"]
@@ -84,7 +84,8 @@ def main():
 
         # 上升趋势转为下跌趋势
         if current_trend_1H == False and prev_trend_1H == True:
-            print(name)
+            print(name, flush=True)
+            target_name.append(name)
 
 
 # web 
@@ -96,7 +97,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return "服务器运行中..."
+    return target_name
 
 def loop_task():
     while True:
