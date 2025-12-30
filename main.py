@@ -75,6 +75,7 @@ target_name = []
 def main():
     target_name.clear()
     for name in names:
+        time.sleep(0.5)
         candles_1H = get_candles(name, bar='1H')
         supertrend_1H = supertrend(candles_1H)
         supertrend_1H = supertrend_1H["in_uptrend"]
@@ -101,7 +102,10 @@ def hello():
 
 def loop_task():
     while True:
-        main()
+        try:
+            main()
+        except Exception as e:
+            print(f"错误: {e}", flush=True)
         time.sleep(3600)
 
 if __name__ == '__main__':
