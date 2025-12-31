@@ -106,7 +106,7 @@ def loop_task():
             main()
         except Exception as e:
             print(f"错误: {e}", flush=True)
-        time.sleep(3600)
+        time.sleep(900)
 
 if __name__ == '__main__':
     # 启动后台循环任务
