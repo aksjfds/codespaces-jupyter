@@ -88,6 +88,13 @@ def main():
             print(name, flush=True)
             target_name.append(name)
 
+        # 涨跌幅大于20%
+        [open, high, low, close] = candles_1H.iloc[-1, :4]
+        rate = abs(open - close) / open * 100
+        
+        if rate > 20:
+            target_name.append({name: rate})
+            print(name, rate, flush=True)
 
 # web 
 
